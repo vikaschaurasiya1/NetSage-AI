@@ -67,7 +67,7 @@ def rule_findings(row):
 def diagnose_live(row):
     key = get_secret("ANTHROPIC_API_KEY")
     if not key or anthropic is None:
-        return None, "Live AI is unavailable. Add ANTHROPIC_API_KEY to Streamlit Secrets; the saved project diagnoses remain available."
+        return None, "DEMO MODE: Live AI is currently unavailable. The project is running with its saved diagnosis results, so all core troubleshooting features remain available for demonstration."
     model = get_secret("ANTHROPIC_MODEL") or "claude-sonnet-5"
     system = """You are NetSage AI, a network-troubleshooting assistant for Cisco-style Packet Tracer labs.
 Base every claim ONLY on the supplied symptom, topology note, and show-command output.
@@ -92,7 +92,17 @@ Return the JSON object only."""
         text = re.sub(r"^```json\s*|\s*```$", "", text.strip(), flags=re.I)
         return json.loads(text), None
     except Exception as e:
-        return None, f"AI request failed: {e}"
+        message = str(e).lower()
+        if "credit balance is too low" in message or "plans & billing" in message or "insufficient credit" in message:
+            return None, (
+                "DEMO MODE: Live AI is currently unavailable because the Anthropic API account has no available credits. "
+                "You can continue using the saved AI diagnoses, deterministic rule checker, and human-review results. "
+                "No project functionality is lost for demonstration."
+            )
+        return None, (
+            "DEMO MODE: The live AI service could not be reached right now. "
+            "The saved project diagnoses remain available, and the deterministic rule checker can still be used."
+        )
 
 st.title("🌐 NetSage AI")
 st.caption("Evidence-backed network troubleshooting • deterministic checks + AI decision support + human review")
@@ -158,7 +168,7 @@ elif page == "Case Diagnoser":
             with st.spinner("Analyzing supplied evidence…"):
                 result, err = diagnose_live(row)
             if err:
-                st.error(err)
+                st.warning(err, icon="ℹ️")
             else:
                 st.json(result)
                 st.success("Recommendation generated. Human review is required before any fix is applied.")
