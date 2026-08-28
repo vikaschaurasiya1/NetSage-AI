@@ -1,0 +1,16 @@
+============================================================
+NetSage AI - Rule Checker Summary
+============================================================
+Total cases scanned:            30
+Cases with >=1 deterministic hit: 8 (27%)
+------------------------------------------------------------
+Hits per check:
+  duplicate_ip        : 1
+  wrong_mask          : 0
+  gateway_mismatch    : 2
+  interface_down      : 1
+  missing_vlan        : 2
+  missing_route       : 2
+============================================================
+
+Per-case results written to: checker_output.csv

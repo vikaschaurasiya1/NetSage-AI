@@ -1,0 +1,31 @@
+case_id,expected_fault,osi_layer,severity,duplicate_ip,wrong_mask,gateway_mismatch,interface_down,missing_vlan,missing_route,any_deterministic_hit
+NET-001,Sub-interface administratively down,Layer 3,High,,,,Interface reported administratively down / line protocol down,,,YES
+NET-002,DHCP Scope Pool Exhaustion,Layer 7,High,,,,,,,NO
+NET-003,DNS service disabled on client subnet gateway,Layer 7,Medium,,,,,,,NO
+NET-004,OSPF Hello Timer Mismatch,Layer 3,High,,,,,,,NO
+NET-005,Extended ACL blocking HTTP traffic,Layer 4,Medium,,,,,,,NO
+NET-006,NAT Overload/PAT keyword missing,Layer 3,High,,,,,,,NO
+NET-007,Overly permissive ACL on Guest VLAN,Layer 3/4,High,,,,,,,NO
+NET-008,VLAN pruned/missing from trunk allowed list,Layer 2,Medium,,,,,VLAN missing from trunk allowed-list or incorrect VLAN assignment suspected,,YES
+NET-009,Host Default Gateway IP Misconfiguration,Layer 3,High,,,Default gateway misconfiguration suspected (outside subnet or mismatched),,,,YES
+NET-010,Management SVI interface in shutdown state,Layer 2,Low,,,,,,,NO
+NET-011,Inter-switch link configured as access instead of trunk,Layer 2,High,,,,,,,NO
+NET-012,Passive interface enabled on active OSPF link,Layer 3,High,,,,,,,NO
+NET-013,Switch port assigned to wrong access VLAN,Layer 2,Medium,,,,,VLAN missing from trunk allowed-list or incorrect VLAN assignment suspected,,YES
+NET-014,Missing IP Helper-Address for DHCP Relay,Layer 7,High,,,,,,,NO
+NET-015,Invalid static route next-hop IP address,Layer 3,High,,,,,,Static/dynamic route problem suspected (missing route or bad next-hop),YES
+NET-016,ACL missing FTP control port 21 permit rule,Layer 4,Medium,,,,,,,NO
+NET-017,NAT interface direction missing on internal interface,Layer 3,High,,,,,,,NO
+NET-018,RADIUS Shared Secret Mismatch,Layer 7,High,,,,,,,NO
+NET-019,Native VLAN Mismatch on trunk link,Layer 2,Low,,,,,,,NO
+NET-020,Default Gateway outside client subnet range,Layer 3,High,,,Default gateway misconfiguration suspected (outside subnet or mismatched),,,,YES
+NET-021,OSPF redistribution missing subnets flag,Layer 3,Medium,,,,,,Static/dynamic route problem suspected (missing route or bad next-hop),YES
+NET-022,ACL blocking SSL/TLS port 443,Layer 4,Medium,,,,,,,NO
+NET-023,Duplicate IP Address Assignment,Layer 3,High,Possible duplicate IP address assignment referenced in evidence,,,,,,YES
+NET-024,VTP Domain Name Mismatch ,Layer 2,Medium,,,,,,,NO
+NET-025,Uplink trunk port not configured as DAI trusted,Layer 2,High,,,,,,,NO
+NET-026,Port security violation limit exceeded,Layer 2,Medium,,,,,,,NO
+NET-027,HSRP Timer Mismatch between peers,Layer 3,Medium,,,,,,,NO
+NET-028,Missing 802.1Q encapsulation on sub-interface,Layer 2/3,High,,,,,,,NO
+NET-029,IPv6 Router Advertisements (RA) suppressed,Layer 3,Medium,,,,,,,NO
+NET-030,CDP disabled globally on device,Layer 2,Low,,,,,,,NO
